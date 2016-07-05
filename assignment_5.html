@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>2 Way Data Binding  Question</title>
+	<!--Create custom directive using isolate scope. -->
+	<script type="text/javascript" src=https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script type="text/javascript">
+		var mod=angular.module("way2",[]);
+		mod.controller("ctrl",function($scope){
+			$scope.var1="";
+			$scope.var2="";
+			$scope.var3="";
+		});
+		mod.directive("ngDir",function(){ 
+			return {
+				template:'<div class="container">Variable 1: {{var1}}<br> Variable 2: {{var2}}<br> Variable 3:{{var3}}</div>',
+				restrict:'E',
+				replace:'false',
+				scope:'='				//2-way binding Scope
+			}
+		});
+		
+	</script>
+</head>
+<body ng-app="way2" ng-controller="ctrl">
+		<form>
+			<div>
+			Var1 :<input type="text" placeholder="Variable 1" ng-model="var1">  </input> <br>
+			</div>
+			<div>
+			<label> Var2 :</label> <input type="text" placeholder="Variable 2" ng-model="var2">  </input> <br>
+			</div>
+			<div>
+			<label> Var3 :</label> <input type="text" placeholder="Variable 3" ng-model="var3">  </input> <br>
+			</div>
+		</form>
+		<ng-dir> </ng-dir>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Angular JS</title>
+	<script type="text/javascript" src=https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script type="text/javascript">
+		var mod=angular.module("modul",[]);
+		mod.controller("ctrl",function($scope){ 							//Controller
+			$scope.popup = function(){
+				alert('Hi There!!!!');
+			}
+		})
+		mod.directive("ngDirect1",function(){ 									//Matching Directive as Element
+			return {
+				template:"<button ng-click='popup()'>Element</button>",
+				restrict:'E'
+			}
+		});
+		mod.directive("ngDirect2",function(){ 									//Matching Directive as Class
+			return {
+				template:"<button ng-click='popup()'>Class</button>",
+				restrict:'C'
+			}
+		});
+		mod.directive("ngDirect3",function(){ 									//Matching Directive as Attribute
+			return {
+				template:"<button ng-click='popup()'>Attribute</button>",
+				restrict:'A'
+			}
+		});
+		mod.directive("ngDirect4",function(){   								//Matching Directive as Comment
+			return { 
+				template : '<button ng-click="popup()">Comment</button>',
+				restrict : 'M',
+				replace : 'false'
+			}
+		});
+	</script>
+</head>
+<body ng-app="modul" class="container" ng-controller="ctrl">
+	<br><ng-direct1></ng-direct1><br><br>
+	<div class="ngDirect2"></div><br>
+	<div ng-direct3></div><br>
+	<!-- directive: ngDirect4 -->
+	</div>
+</body>
+</html>

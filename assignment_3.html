@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Assignment_3</title>
+	<script type="text/javascript" src=https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script type="text/javascript">
+		var mod=angular.module("dbase",[]);
+		mod.factory("db",function(){
+				var size=0;
+				var employee=[{									//Employee Object
+					id:"",
+					name:"",
+					salary:"",
+					age:""
+			}];
+			employee.add_update=function(curr_employee){		//Add function for employee
+				if(curr_employee.id==null)
+				{
+					employee.id=size++;
+					employee.push(curr_employee);
+				}
+				else
+				{
+					for(i in employee)
+					{
+						if(employee[i].id==curr_employee.id)
+						{
+							employee[i]=curr_employee;
+						}
+					}
+				}
+			}		
+			employee.view=function(){							//View all employees
+				return employee;
+			}
+			return employee;
+		});
+		mod.controller("ctrl",function($scope,db)
+		{
+			$scope.employees=db.view();
+			$scope.add_employee=function()
+			{
+				db.add_update($scope.new);
+				$scope.new={};
+			}
+		});
+	</script>
+</head>
+<body ng-app="dbase" ng-controller="ctrl" class="container">
+<form>
+	<div>
+		<div>
+			Name: <input type="text" ng-model="new.name" id="Name" name="Name" placeholder="Employee Name"><br><br>
+			Age: <input type="number" id="Age" name="Age" placeholder="Employee Age" ng-model="new.age"><br><br>
+			Salary: <input type="number" ng-model="new.salary" id="Salary" name="Salary" placeholder="Employee Salary"><br><br>
+			<input type="button" value="Save" ng-click="add_employee()"/><br><br><br><br>
+		</div>
+	</div>
+	<div>
+		<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Age</th>
+						<th>Salary</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in employees">
+						<td>{{item.name}}</td>
+						<td>{{item.age}}</td>
+						<td>{{item.salary}}</td>
+					   
+					</tr>
+				</tbody>
+			</table>
+	</div>
+</form>
+</body>
+</html>

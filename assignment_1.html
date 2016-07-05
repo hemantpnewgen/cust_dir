@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Assignment_1</title>
+	<script type="text/javascript" src=https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script type="text/javascript">
+		var mod=angular.module("modul",[]);
+		mod.directive("ngCopy",function(){                           // Custom Directive to copy the input field value to the page
+			return {
+				template:"<h2> Output: {{txt}}</h2>",
+				restrict:'EA'
+			}
+		});
+	</script>
+</head>
+<body ng-app="modul" class="container">
+	Input: <input type="text" ng-model="txt" placeholder="Enter your name">
+	<br><br>
+	<div ng-Copy></div>
+</body>
+</html>

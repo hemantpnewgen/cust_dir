@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Assignment_4</title>
+	<!--Create custom directive using isolate scope. -->
+	<script type="text/javascript" src=https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script type="text/javascript">
+		var mod=angular.module("isosco",[]);
+		mod.controller("ctrl",function($scope){
+			$scope.var1="";
+			$scope.var2="";
+			$scope.var3="";
+		});
+		mod.directive("ngDir",function(){ 
+			return {
+				template:'<div class="container">Var1: {{var1}}<br> var2: {{var2}}<br> var3:{{var3}}</div>',
+				restrict:'E',
+				replace:'false',
+				scope:{}				//Isolated Scope
+			}
+		});
+		
+	</script>
+</head>
+<body ng-app="isosco" ng-controller="ctrl">
+		<form>
+			<div>
+			Var1 :<input type="text" placeholder="Var_1" ng-model="var1"/><br>
+			</div>
+			<div>
+			Var2 :<input type="text" placeholder="Var_2" ng-model="var2"></input><br>
+			</div>
+			<div>
+			Var3 :<input type="text" placeholder="Var_3" ng-model="var3"></input><br>
+			</div>
+		</form>
+		<ng-dir> </ng-dir>
+</body>
+</html>
